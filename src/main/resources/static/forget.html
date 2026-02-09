@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reset Password - EduPath AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: "#13b6ec" } } } }
+    </script>
+</head>
+<body class="bg-[#f6f8f8] min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-[420px] p-10 rounded-[2.5rem] shadow-xl text-center">
+        <h1 class="text-2xl font-black mb-6">Reset Password</h1>
+        <input type="email" id="email" placeholder="Registered Email" class="w-full p-3 border-2 border-gray-100 rounded-xl mb-3 focus:border-primary outline-none"/>
+        <input type="password" id="password" placeholder="New Password" class="w-full p-3 border-2 border-gray-100 rounded-xl mb-3 focus:border-primary outline-none"/>
+        <button id="resetBtn" class="w-full bg-primary text-white py-3 rounded-xl font-black shadow-lg">Update Password</button>
+        <div id="message" class="mt-4 hidden font-bold"></div>
+        <p class="mt-6 text-sm">Back to <a href="login.html" class="text-primary font-bold">Login</a></p>
+    </div>
+
+    <script>
+        document.getElementById("resetBtn").addEventListener("click", function(){
+            const email = document.getElementById("email").value.trim().toLowerCase();
+            const newPass = document.getElementById("password").value.trim();
+            const message = document.getElementById("message");
+            const storedData = localStorage.getItem(email);
+
+            message.classList.remove("hidden");
+            if(!storedData){
+                message.style.color = "red";
+                message.innerText = "Email not registered.";
+                return;
+            }
+
+            const account = JSON.parse(storedData);
+            account.password = newPass;
+            localStorage.setItem(email, JSON.stringify(account));
+            message.style.color = "green";
+            message.innerText = "Success! Redirecting...";
+            setTimeout(()=> window.location.href="login.html", 1500);
+        });
+    </script>
+</body>
+</html>

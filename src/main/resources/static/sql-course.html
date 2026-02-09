@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL & Databases Course</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10 font-sans text-gray-800">
+
+<h1 class="text-3xl font-bold mb-8 text-blue-600 text-center">SQL & Databases Course</h1>
+
+<ol class="list-decimal ml-6 space-y-6 max-w-3xl mx-auto">
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 1: Introduction to Databases</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: What is a Database?
+Example: Relational vs NoSQL overview
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 2: SQL Basics</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Basic SQL commands
+Example: CREATE TABLE users (id INT, name VARCHAR(50));
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 3: SELECT Queries</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Retrieve data from tables
+Example: SELECT name FROM users;
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 4: WHERE Clause</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Filter rows with conditions
+Example: SELECT * FROM users WHERE id = 1;
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 5: UPDATE & DELETE</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Modify or remove data
+Example: UPDATE users SET name='Alice' WHERE id=1;
+         DELETE FROM users WHERE id=1;
+    </pre>
+  </li>
+
+  <!-- Modules 6–20 styled same way -->
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 6: JOINs (INNER, LEFT, RIGHT)</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Combine rows from multiple tables
+Example: SELECT * FROM orders INNER JOIN customers ON orders.cid = customers.id;
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 7: GROUP BY & Aggregates</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Group rows and apply functions
+Example: SELECT dept, COUNT(*) FROM employees GROUP BY dept;
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 8: Indexes & Performance</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Speed up queries with indexes
+Example: CREATE INDEX idx_name ON users(name);
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 9: Transactions & ACID</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Ensure reliable database operations
+Example: BEGIN; UPDATE accounts SET balance=balance-100 WHERE id=1; COMMIT;
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 10: Constraints (PRIMARY, FOREIGN)</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Rules for data integrity
+Example: PRIMARY KEY(id), FOREIGN KEY(dept_id) REFERENCES departments(id);
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 11: Views & Stored Procedures</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Virtual tables and reusable SQL blocks
+Example: CREATE VIEW active_users AS SELECT * FROM users WHERE active=1;
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 12: Triggers</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Automatic actions on events
+Example: CREATE TRIGGER log_update AFTER UPDATE ON users FOR EACH ROW ...
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 13: Normalization</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Organize data to reduce redundancy
+Example: Splitting user info into separate tables
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 14: Relationships</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Define links between tables
+Example: One-to-many relationship between customers and orders
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 15: Backup & Restore</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Save and recover database state
+Example: mysqldump -u root dbname > backup.sql
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 16: Advanced Queries</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Complex SQL operations
+Example: SELECT dept, AVG(salary) FROM employees WHERE salary>50000 GROUP BY dept;
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 17: Subqueries</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Nested queries inside another
+Example: SELECT name FROM users WHERE id IN (SELECT user_id FROM orders);
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 18: SQL Functions</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Built-in operations on data
+Example: SELECT UPPER(name), NOW() FROM users;
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 19: Practice Exercises</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Hands-on SQL problems
+Example: Write queries to find top 5 highest salaries
+    </pre>
+  </li>
+
+  <li>
+    <h2 class="text-xl font-bold text-blue-600 mb-1">Module 20: Project: Student Database</h2>
+    <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Final project applying all concepts
+Example: Build a student management system with CRUD operations
+    </pre>
+  </li>
+
+</ol>
+
+</body>
+</html>

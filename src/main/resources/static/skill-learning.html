@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Learning</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10">
+
+<h1 class="text-3xl font-bold mb-8">Technical Skill Learning</h1>
+
+<!-- FEATURE NAVIGATION JS -->
+<script>
+/* FEATURE NAVIGATION */
+function handleFeatureClick(feature) {
+    if (feature === "skills") window.location.href = "skill-learning.html";
+    if (feature === "aptitude") window.location.href = "aptitude.html";
+    if (feature === "jobs") window.location.href = "jobs.html";
+}
+</script>
+
+<div class="grid md:grid-cols-3 gap-6">
+
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h2 class="text-xl font-bold">Java Programming</h2>
+    <button onclick="location.href='java-programming.html'" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded">Start Learning</button>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h2 class="text-xl font-bold">Web Development</h2>
+    <button onclick="location.href='web-development.html'" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded">Start Learning</button>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h2 class="text-xl font-bold">Data Structures</h2>
+    <button onclick="location.href='ds-course.html'" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded">Start Learning</button>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h2 class="text-xl font-bold">Python Programming</h2>
+    <button onclick="location.href='python-programming.html'" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded">Start Learning</button>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h2 class="text-xl font-bold">SQL & Databases</h2>
+    <button onclick="location.href='sql-course.html'" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded">Start Learning</button>
+  </div>
+
+  <!-- Spring Boot -->
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h2 class="text-xl font-bold">Spring Boot</h2>
+    <button onclick="location.href='spring-boot.html'" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded">Start Learning</button>
+  </div>
+
+</div> <!-- ✅ closing div for grid -->
+
+</body>
+</html>

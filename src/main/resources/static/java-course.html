@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Programming Course</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+    h1 { color: #1e90ff; }
+    .module { margin-bottom: 10px; padding: 10px; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; }
+    .module:hover { background: #e6f0ff; }
+    .description { font-size: 14px; color: #555; margin-top: 5px; }
+    .quiz { display: none; margin-top: 10px; padding-left: 15px; background: #f1f1f1; border-radius: 5px; padding: 10px; }
+    .quiz ol li { margin-bottom: 5px; }
+    .course-buttons { margin-top: 30px; }
+    .course-buttons button { display: block; width: 250px; margin: 10px 0; padding: 10px; border: none; background: #1e90ff; color: #fff; border-radius: 5px; cursor: pointer; text-align: left; }
+    .course-buttons button:hover { background: #0066cc; }
+    .quiz-button { margin-top: 5px; padding: 5px 10px; border: none; background: #28a745; color: #fff; border-radius: 5px; cursor: pointer; }
+    .quiz-button:hover { background: #1e7e34; }
+</style>
+</head>
+<body>
+
+<h1>Java Programming Course</h1>
+
+<!-- Module List -->
+<div class="module">
+    <strong>Module 1: Introduction to Java</strong>
+    <div class="description">History, features, and basics of Java programming.</div>
+    <button class="quiz-button" onclick="toggleQuiz('quiz1')">Show Quiz</button>
+    <div class="quiz" id="quiz1">
+        <ol>
+            <li>Java was developed by? a) Microsoft b) Sun Microsystems</li>
+            <li>Java is __________? a) Platform independent b) Machine dependent</li>
+            <li>Java file extension? a) .java b) .class</li>
+            <li>Which feature makes Java secure? a) JVM b) Bytecode</li>
+            <li>Java supports which paradigm? a) Object-oriented b) Functional only</li>
+            <li>Command to print in Java? a) print() b) System.out.println()</li>
+            <li>Java released in which year? a) 1995 b) 2000</li>
+            <li>JVM stands for? a) Java Variable Machine b) Java Virtual Machine</li>
+            <li>Keyword to inherit a class? a) implements b) extends</li>
+            <li>Which is not a Java feature? a) Robust b) Not secure</li>
+        </ol>
+    </div>
+</div>
+
+<div class="module">
+    <strong>Module 2: Variables & Data Types</strong>
+    <div class="description">Learn about variables, data types, and memory allocation.</div>
+    <button class="quiz-button" onclick="toggleQuiz('quiz2')">Show Quiz</button>
+    <div class="quiz" id="quiz2">
+        <ol>
+            <li>Which is primitive? a) int b) String</li>
+            <li>Default int value? a) 0 b) null</li>
+            <li>Decimal type? a) float b) boolean</li>
+            <li>char stores how many bytes? a) 1 b) 2</li>
+            <li>Boolean values? a) true/false b) 0/1</li>
+            <li>String is? a) Primitive b) Object</li>
+            <li>Valid variable name? a) 2name b) name2</li>
+            <li>int x = 5; double y = x; is? a) Type casting b) Compilation error</li>
+            <li>byte stores how many bits? a) 8 b) 16</li>
+            <li>Cannot hold decimal? a) int b) float</li>
+        </ol>
+    </div>
+</div>
+
+<div class="module">
+    <strong>Module 3: Operators & Control Statements</strong>
+    <div class="description">Learn about arithmetic, logical, and relational operators with loops.</div>
+    <button class="quiz-button" onclick="toggleQuiz('quiz3')">Show Quiz</button>
+    <div class="quiz" id="quiz3">
+        <ol>
+            <li>Equality operator? a) == b) =</li>
+            <li>Logical AND? a) && b) ||</li>
+            <li>Loop statement? a) for b) if</li>
+            <li>Switch works with? a) int b) boolean</li>
+            <li>Ternary operator? a) ? : b) ++</li>
+            <li>break is used to? a) Exit loop b) Skip iteration</li>
+            <li>continue does? a) Skip to next iteration b) Stop program</li>
+            <li>If-else executes based on? a) Condition b) Loop</li>
+            <li>++i vs i++? a) Pre-increment b) Post-increment</li>
+            <li>Conditional operator? a) ? : b) &&</li>
+        </ol>
+    </div>
+</div>
+
+<div class="module">
+    <strong>Module 4: Classes & Objects</strong>
+    <div class="description">Understand OOP basics: classes, objects, and constructors.</div>
+    <button class="quiz-button" onclick="toggleQuiz('quiz4')">Show Quiz</button>
+    <div class="quiz" id="quiz4">
+        <ol>
+            <li>Class is a? a) Blueprint b) Object</li>
+            <li>Object is instance of? a) Class b) Interface</li>
+            <li>Constructor is used for? a) Object initialization b) Variable declaration</li>
+            <li>Keyword to create object? a) new b) this</li>
+            <li>Method is? a) Function inside class b) Variable</li>
+            <li>Default constructor? a) No args b) Some args</li>
+            <li>this keyword refers? a) Current object b) Parent object</li>
+            <li>Access modifier everywhere? a) public b) private</li>
+            <li>Encapsulation means? a) Hiding data b) Inheriting data</li>
+            <li>Not OOP concept? a) Inheritance b) Compilation</li>
+        </ol>
+    </div>
+</div>
+
+<div class="module">
+    <strong>Module 5: Inheritance & Polymorphism</strong>
+    <div class="description">Learn inheritance, method overloading, and overriding concepts.</div>
+    <button class="quiz-button" onclick="toggleQuiz('quiz5')">Show Quiz</button>
+    <div class="quiz" id="quiz5">
+        <ol>
+            <li>Inheritance is? a) Reusing code b) Writing new code</li>
+            <li>Keyword for inheritance? a) extends b) implements</li>
+            <li>Polymorphism means? a) Many forms b) Single form</li>
+            <li>Method overloading? a) Same name, different params b) Different name</li>
+            <li>Method overriding? a) Same signature in subclass b) Different signature</li>
+            <li>super keyword? a) Parent class b) Child class</li>
+            <li>Multiple inheritance in Java? a) Interface b) Class</li>
+            <li>Compile-time polymorphism? a) Overloading b) Overriding</li>
+            <li>Runtime polymorphism? a) Overriding b) Overloading</li>
+            <li>Not OOP? a) Encapsulation b) goto</li>
+        </ol>
+    </div>
+</div>
+
+<div class="module">
+    <strong>Module 6: Exception Handling</strong>
+    <div class="description">Handle runtime errors using try-catch, throws, and finally.</div>
+    <button class="quiz-button" onclick="toggleQuiz('quiz6')">Show Quiz</button>
+    <div class="quiz" id="quiz6">
+        <ol>
+            <li>Exception is? a) Error b) Runtime problem</li>
+            <li>Handle exceptions? a) try-catch b) if-else</li>
+            <li>finally block? a) Always executes b) Sometimes</li>
+            <li>Unchecked exceptions? a) Runtime b) Compile-time</li>
+            <li>Checked exceptions? a) Compile-time b) Runtime</li>
+            <li>throw vs throws? a) throw single b) throws declare multiple</li>
+            <li>Null exception? a) NullPointerException b) IOException</li>
+            <li>ArithmeticException? a) Division by zero b) Invalid cast</li>
+            <li>Parent of all exceptions? a) Throwable b) Error</li>
+            <li>Not an exception? a) IOException b) intError</li>
+        </ol>
+    </div>
+</div>
+
+<div class="module">
+    <strong>Module 7: Arrays & Strings</strong>
+    <div class="description">Learn arrays, string operations, and their methods.</div>
+    <button class="quiz-button" onclick="toggleQuiz('quiz7')">Show Quiz</button>
+    <div class="quiz" id="quiz7">
+        <ol>
+            <li>Array stores? a) Multiple b) Single value</li>
+            <li>Array index starts at? a) 0 b) 1</li>
+            <li>Length of array? a) arr.length b) arr.size()</li>
+            <li>String is? a) Object b) Primitive</li>
+            <li>String length? a) length() b) size()</li>
+            <li>charAt() returns? a) Character b) String</li>
+            <li>Arrays fixed size? a) Yes b) No</li>
+            <li>Concatenation uses? a) + b) &</li>
+            <li>compareTo() returns? a) int b) String</li>
+            <li>Invalid array declaration? a) int[] a b) int a[]</li>
+        </ol>
+    </div>
+</div>
+
+<div class="module">
+    <strong>Module 8: File Handling & I/O</strong>
+    <div class="description">Learn reading and writing files using Java I/O classes.</div>
+    <button class="quiz-button" onclick="toggleQuiz('quiz8')">Show Quiz</button>
+    <div class="quiz" id="quiz8">
+        <ol>
+            <li>Reads files? a) FileReader b) Scanner</li>
+            <li>Writes to file? a) FileWriter b) FileReader</li>
+            <li>BufferedReader used for? a) Efficient reading b) Writing</li>
+            <li>FileOutputStream? a) Writing bytes b) Reading bytes</li>
+            <li>IOException checked? a) Yes b) No</li>
+            <li>Read line? a) readLine() b) read()</li>
+            <li>File exists? a) exists() b) present()</li>
+            <li>Close stream? a) close() b) stop()</li>
+            <li>Console input? a) Scanner b) FileReader</li>
+            <li>File is? a) Object b) Primitive</li>
+        </ol>
+    </div>
+</div>
+
+<div class="module">
+    <strong>Module 9: Collections Framework</strong>
+    <div class="description">Learn List, Set, Map, and utility classes of Java Collections.</div>
+    <button class="quiz-button" onclick="toggleQuiz('quiz9')">Show Quiz</button>
+    <div class="quiz" id="quiz9">
+        <ol>
+            <li>List implementation? a) ArrayList b) HashMap</li>
+            <li>Unique elements? a) HashSet b) ArrayList</li>
+            <li>Key-Value pair? a) Map b) List</li>
+            <li>Allows duplicates? a) List b) Set</li>
+            <li>Iterator used for? a) Traversal b) Insertion</li>
+            <li>Synchronized class? a) Vector b) ArrayList</li>
+            <li>HashMap vs HashTable? a) HashTable synchronized b) HashMap synchronized</li>
+            <li>Queue implementation? a) LinkedList b) ArrayList</li>
+            <li>PriorityQueue type? a) Min heap b) Max heap</li>
+            <li>Collections utility? a) Sorting b) File I/O</li>
+        </ol>
+    </div>
+</div>
+
+<div class="module">
+    <strong>Module 10: Multithreading & Concurrency</strong>
+    <div class="description">Understand threads, synchronization, and Executor framework.</div>
+    <button class="quiz-button" onclick="toggleQuiz('quiz10')">Show Quiz</button>
+    <div class="quiz" id="quiz10">
+        <ol>
+            <li>Thread is? a) Lightweight process b) Process</li>
+            <li>Runnable is? a) Interface b) Class</li>
+            <li>start() vs run()? a) start begins thread b) run begins thread</li>
+            <li>Synchronized keyword? a) Locks resource b) Unlocks resource</li>
+            <li>Deadlock occurs? a) Two threads wait forever b) Thread finishes</li>
+            <li>join()? a) Waits for thread b) Starts new thread</li>
+            <li>Not thread state? a) Ready b) Finished</li>
+            <li>Thread-safe class? a) Vector b) ArrayList</li>
+            <li>Pause thread? a) sleep() b) stop()</li>
+            <li>Executor framework? a) Thread pool b) File I/O</li>
+        </ol>
+    </div>
+</div>
+
+<!-- Related Courses -->
+<h2>Other Technical Skills</h2>
+<div class="course-buttons">
+    <button onclick="location.href='java-programming.html'">Java Programming - Start Learning</button>
+    <button onclick="location.href='web-development.html'">Web Development - Start Learning</button>
+    <button onclick="location.href='data-structures.html'">Data Structures - Start Learning</button>
+    <button onclick="location.href='python-programming.html'">Python Programming - Start Learning</button>
+    <button onclick="location.href='sql-databases.html'">SQL & Databases - Start Learning</button>
+    <button onclick="location.href='spring-boot.html'">Spring Boot - Start Learning</button>
+</div>
+
+<script>
+function toggleQuiz(id) {
+    const quiz = document.getElementById(id);
+    quiz.style.display = (quiz.style.display === "block") ? "none" : "block";
+}
+</script>
+
+</body>
+</html>

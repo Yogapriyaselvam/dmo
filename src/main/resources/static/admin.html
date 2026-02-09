@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduPath AI – Admin Panel</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+const ADMIN_USERNAME = "adminroot@432";
+const ADMIN_PASSWORD = "web2026";
+
+/* ---------- LOGIN ---------- */
+function handleAdminLogin() {
+  const username = adminUser.value.trim();
+  const password = adminPass.value.trim();
+  const status = loginStatus;
+
+  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+    localStorage.setItem("isAdmin", "true");
+    showDashboard();
+  } else {
+    status.innerText = "Invalid admin login";
+    status.className = "text-red-500 text-center font-bold mt-3";
+  }
+}
+
+/* ---------- LOGOUT ---------- */
+function logoutAdmin() {
+  localStorage.removeItem("isAdmin");
+  location.reload();
+}
+
+/* ---------- SHOW DASHBOARD ---------- */
+function showDashboard() {
+  loginSection.classList.add("hidden");
+  dashboardSection.classList.remove("hidden");
+  loadUsers();
+}
+
+/* ---------- LOAD USERS ---------- */
+function loadUsers() {
+  const users = JSON.parse(localStorage.getItem("allUsers") || "[]");
+  const container = userTable;
+
+  if (users.length === 0) {
+    container.innerHTML = "<p class='text-gray-500'></p>"
+    return;
+  }
+
+  container.innerHTML = `
+    <table class="w-full text-left border mt-4">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="p-2 border">Name</th>
+          <th class="p-2 border">Email</th>
+          <th class="p-2 border">Password</th>
+          <th class="p-2 border">Department</th>
+          <th class="p-2 border">Score</th>
+          <th class="p-2 border">Solved</th>
+          <th class="p-2 border">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${users.map((u,i)=>`
+          <tr class="border">
+            <td class="p-2">${u.name}</td>
+            <td class="p-2">${u.email}</td>
+            <td class="p-2 text-red-500 font-bold">${u.password}</td>
+            <td class="p-2">${u.department}</td>
+            <td class="p-2">${u.score || 0}</td>
+            <td class="p-2">${u.solvedCount || 0}</td>
+            <td class="p-2">
+              <button onclick="deleteUser(${i})"
+                class="bg-red-500 text-white px-3 py-1 rounded">
+                Delete
+              </button>
+            </td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+
+  totalUsers.innerText = users.length;
+}
+
+/* ---------- DELETE USER ---------- */
+function deleteUser(index) {
+  const users = JSON.parse(localStorage.getItem("allUsers") || "[]");
+  users.splice(index,1);
+  localStorage.setItem("allUsers", JSON.stringify(users));
+  loadUsers();
+}
+
+/* ---------- AUTO LOGIN CHECK ---------- */
+window.onload = () => {
+  if (localStorage.getItem("isAdmin") === "true") {
+    showDashboard();
+  }
+};
+</script>
+</head>
+
+<body class="bg-gray-100 min-h-screen font-sans">
+
+<!-- LOGIN -->
+<div id="loginSection" class="flex items-center justify-center min-h-screen">
+  <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center mb-6">Admin Login</h2>
+
+    <input id="adminUser" placeholder="Username" class="w-full border p-3 rounded mb-3">
+    <input id="adminPass" type="password" placeholder="Password" class="w-full border p-3 rounded mb-3">
+
+    <button onclick="handleAdminLogin()" class="w-full bg-blue-600 text-white py-3 rounded font-bold">
+      Login as Admin
+    </button>
+
+    <p id="loginStatus" class="text-center mt-3"></p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboardSection" class="hidden p-8">
+
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">Admin Dashboard</h1>
+    <button onclick="logoutAdmin()" class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
+  </div>
+
+  <div class="bg-white p-6 rounded-2xl shadow mb-6">
+    <h2 class="text-xl font-bold">Website Statistics</h2>
+    <p class="mt-2">Total Registered Users: <span id="totalUsers" class="font-bold">10</span></p>
+  </div>
+
+  <div class="bg-white p-6 rounded-2xl shadow">
+    <h2 class="text-xl font-bold mb-4">Registered Users</h2>
+    <p>Total registered users :13 </p>
+    <div id="userTable"></div>
+  </div>
+
+</div>
+</body>
+</html>

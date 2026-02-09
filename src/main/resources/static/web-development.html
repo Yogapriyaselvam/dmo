@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Development Course</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10">
+
+<h1 class="text-3xl font-bold mb-8">Web Development Course</h1>
+
+<div id="modules-container" class="grid md:grid-cols-1 gap-6"></div>
+
+<!-- Quiz Container -->
+<div id="quiz-container" class="hidden bg-green-100 p-6 rounded-xl">
+  <h2 id="quiz-title" class="text-xl font-bold mb-4"></h2>
+  <form id="quiz-form"></form>
+  <button id="submit-quiz" class="mt-4 bg-orange-500 text-white px-4 py-2 rounded" onclick="checkQuiz()">Submit Quiz</button>
+  <div id="score" class="mt-4 font-bold text-lg"></div>
+  <div id="definitions" class="mt-4 bg-white p-4 rounded shadow hidden"></div>
+  <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded" onclick="backToModules()">Back to Modules</button>
+</div>
+
+<script>
+// ---------- Modules Learn Content ----------
+const learnContent = {
+  1: `Introduction to HTML
+HTML structures web pages. Use tags like <h1>, <p>, <a> for headings, paragraphs, links.`,
+  2: `CSS Basics
+CSS styles HTML elements. Use color, font-size, layout with classes and IDs.`,
+  3: `JavaScript Basics
+JS is used for interactivity. Variables, functions, and events are basic concepts.`,
+  4: `DOM Manipulation
+DOM represents HTML as objects. Use document.getElementById or querySelector to change content.`,
+  5: `Forms and Validation
+Forms collect user input. JS validates input using conditions or regex.`,
+  6: `CSS Flexbox & Grid
+Flexbox and Grid control layout. Flexbox for row/column alignment, Grid for structured grids.`
+};
+
+// ---------- Quiz Content ----------
+const quizContent = {
+  1: [
+    { q: "What does HTML stand for?", options: ["Hyperlinks and Text Markup Language", "Hyper Text Markup Language", "Home Tool Markup Language"], answer: 1, def: "HTML = Hyper Text Markup Language, for webpage structure." },
+    { q: "HTML elements are enclosed in?", options: ["Curly braces {}", "Angle brackets <>", "Parentheses ()"], answer: 1, def: "HTML tags use <angle brackets>." },
+    { q: "Which tag creates a hyperlink?", options: ["<a>", "<link>", "<href>"], answer: 0, def: "<a> tag creates hyperlinks." }
+  ],
+  2: [
+    { q: "CSS stands for?", options: ["Cascading Style Sheets", "Colorful Style Sheets", "Creative Style Syntax"], answer: 0, def: "CSS = Cascading Style Sheets, for styling HTML." },
+    { q: "To change text color, use?", options: ["font-color", "color", "text-color"], answer: 1, def: "'color' property changes text color." },
+    { q: "Which CSS property controls layout?", options: ["display", "font", "padding"], answer: 0, def: "'display' property sets layout: block, flex, grid." }
+  ],
+  3: [
+    { q: "Which symbol is used for comments in JS?", options: ["//", "/* */", "Both"], answer: 2, def: "JS supports // single-line and /* */ multi-line comments." },
+    { q: "Variable declaration in JS?", options: ["var, let, const", "int, float, string", "dim"], answer: 0, def: "Use var, let, const to declare JS variables." },
+    { q: "Function syntax?", options: ["function name() {}", "func name() {}", "def name() {}"], answer: 0, def: "'function' keyword defines a function." }
+  ],
+  4: [
+    { q: "DOM stands for?", options: ["Document Object Model", "Display Object Model", "Document Oriented Model"], answer: 0, def: "DOM = Document Object Model, represents HTML as objects." },
+    { q: "Select element by ID?", options: ["document.getElementById()", "document.querySelectorAll()", "getElement()"], answer: 0, def: "getElementById() selects element by ID." },
+    { q: "Change element text?", options: ["innerText", "textContent", "Both"], answer: 2, def: "Both innerText and textContent can change text." }
+  ],
+  5: [
+    { q: "HTML form element is?", options: ["<form>", "<input>", "<button>"], answer: 0, def: "<form> tag creates a form." },
+    { q: "Input validation in JS uses?", options: ["if statements", "Regex", "Both"], answer: 2, def: "Both conditions and regex can validate input." },
+    { q: "Submit button type?", options: ["type='submit'", "type='button'", "type='form'"], answer: 0, def: "Use type='submit' for submit buttons." }
+  ],
+  6: [
+    { q: "Flexbox main property?", options: ["display: flex", "flex-direction", "justify-content"], answer: 0, def: "Flex container uses display: flex." },
+    { q: "Grid container property?", options: ["display: grid", "grid-template-columns", "grid-gap"], answer: 0, def: "Grid container uses display: grid." },
+    { q: "Responsive design adjusts?", options: ["Screen size", "Font size", "Both"], answer: 2, def: "Responsive design adjusts layout and fonts." }
+  ]
+};
+
+// ---------- Generate Modules ----------
+const container = document.getElementById("modules-container");
+let currentModule = 0;
+
+for(let i=1;i<=6;i++){
+  const div = document.createElement("div");
+  div.className = "bg-white p-6 rounded-xl shadow";
+  div.innerHTML = `
+    <h2 class="text-xl font-bold">Module ${i}: ${learnContent[i].split("\n")[0]}</h2>
+    <p class="mt-2 hidden" id="learn${i}">${learnContent[i].split("\n").slice(1).join("\n")}</p>
+    <div class="mt-4 flex gap-4">
+      <button class="bg-blue-600 text-white px-4 py-2 rounded" onclick="showLearn(${i})">Learn</button>
+      <button class="bg-green-600 text-white px-4 py-2 rounded" onclick="showQuiz(${i})">Take Quiz</button>
+    </div>
+  `;
+  container.appendChild(div);
+}
+
+// ---------- Show Learn ----------
+function showLearn(id){
+  // Hide other learn sections
+  for(let i=1;i<=6;i++){
+    const l = document.getElementById("learn"+i);
+    if(l) l.classList.add("hidden");
+  }
+  document.getElementById("learn"+id).classList.remove("hidden");
+}
+
+// ---------- Show Quiz ----------
+function showQuiz(id){
+  currentModule = id;
+  document.getElementById("modules-container").classList.add("hidden");
+  document.getElementById("quiz-container").classList.remove("hidden");
+
+  const form = document.getElementById("quiz-form");
+  form.innerHTML = "";
+  document.getElementById("quiz-title").innerText = `Module ${id} Quiz`;
+
+  quizContent[id].forEach((q,i)=>{
+    let html = `<p class="font-semibold">${i+1}. ${q.q}</p>`;
+    q.options.forEach((opt,j)=>{
+      html += `<label class="block ml-4"><input type="radio" name="q${i}" value="${j}"> ${opt}</label>`;
+    });
+    form.innerHTML += html;
+  });
+
+  document.getElementById("score").innerText = "";
+  document.getElementById("definitions").classList.add("hidden");
+  document.getElementById("definitions").innerHTML = "";
+}
+
+// ---------- Check Quiz ----------
+function checkQuiz(){
+  const quiz = quizContent[currentModule];
+  let score = 0;
+  let defsHTML = "<h3 class='text-lg font-bold mb-2'>Explanation:</h3>";
+
+  quiz.forEach((q,i)=>{
+    const sel = document.querySelector(`input[name="q${i}"]:checked`);
+    if(sel && Number(sel.value) === q.answer) score++;
+    defsHTML += `<p><b>Q${i+1}:</b> ${q.def}</p>`;
+  });
+
+  document.getElementById("score").innerText = `Your Score: ${score} / ${quiz.length}`;
+  const defDiv = document.getElementById("definitions");
+  defDiv.innerHTML = defsHTML;
+  defDiv.classList.remove("hidden");
+}
+
+// ---------- Back ----------
+function backToModules(){
+  document.getElementById("quiz-container").classList.add("hidden");
+  document.getElementById("modules-container").classList.remove("hidden");
+  // Hide all learn content
+  for(let i=1;i<=6;i++){
+    const l = document.getElementById("learn"+i);
+    if(l) l.classList.add("hidden");
+  }
+}
+</script>
+
+<!-- Navigation -->
+<div class="mt-12 flex gap-4">
+  <button onclick="location.href='skill-learning.html'" class="bg-green-500 text-white px-6 py-2 rounded font-bold">Back to Courses</button>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - EduPath AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: { extend: { colors: { primary: "#13b6ec" } } }
+    }
+  </script>
+</head>
+<body class="bg-[#f6f8f8] dark:bg-[#101d22] font-['Inter'] min-h-screen">
+
+<header class="flex justify-between items-center p-8 bg-transparent max-w-7xl mx-auto">
+  <h1 class="text-2xl font-black">
+    Welcome, <span id="welcome-user">User</span>
+  </h1>
+  <div class="flex items-center gap-4">
+    <button onclick="toggleDarkMode()" class="p-3 rounded-xl bg-white dark:bg-[#15262c] shadow-sm border border-gray-100 flex items-center justify-center">
+      <span id="dark-icon" class="material-symbols-outlined text-gray-700 dark:text-gray-300">dark_mode</span>
+    </button>
+    <button onclick="logout()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2.5 rounded-xl font-bold transition shadow-sm">
+      Logout
+    </button>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-8 pb-12">
+  <div class="mb-10">
+    <p class="text-gray-400 font-bold text-lg">Department: <span id="side-dept" class="text-gray-500">General</span></p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-8 mb-14">
+    <div class="bg-white dark:bg-[#15262c] p-10 rounded-[2.5rem] shadow-sm border border-gray-50">
+      <p class="text-gray-400 text-sm font-black uppercase tracking-wider mb-2">Solved Problems</p>
+      <h2 id="problems-solved" class="text-6xl font-black text-blue-500">0</h2>
+    </div>
+    <div class="bg-white dark:bg-[#15262c] p-10 rounded-[2.5rem] shadow-sm border border-gray-50">
+      <p class="text-gray-400 text-sm font-black uppercase tracking-wider mb-2">Current Score</p>
+      <h2 id="user-score" class="text-6xl font-black text-green-500">0</h2>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-black mb-6">Core Features</h2>
+  <div class="grid md:grid-cols-3 gap-8 mb-16">
+    <div onclick="handleFeatureClick('skills')" class="group cursor-pointer bg-white dark:bg-[#15262c] p-10 rounded-[2rem] shadow-sm border border-gray-50 hover:bg-primary transition-all duration-300">
+      <h3 class="font-black text-xl group-hover:text-white mb-1">Skill Learning</h3>
+      <p class="text-gray-500 group-hover:text-sky-100">Start learning courses</p>
+    </div>
+    <div onclick="handleFeatureClick('aptitude')" class="group cursor-pointer bg-white dark:bg-[#15262c] p-10 rounded-[2rem] shadow-sm border border-gray-50 hover:bg-primary transition-all duration-300">
+      <h3 class="font-black text-xl group-hover:text-white mb-1">Aptitude Test</h3>
+      <p class="text-gray-500 group-hover:text-sky-100">Practice mock tests</p>
+    </div>
+    <div onclick="handleFeatureClick('jobs')" class="group cursor-pointer bg-white dark:bg-[#15262c] p-10 rounded-[2rem] shadow-sm border border-gray-50 hover:bg-primary transition-all duration-300">
+      <h3 class="font-black text-xl group-hover:text-white mb-1">Job Matches</h3>
+      <p class="text-gray-500 group-hover:text-sky-100">See matching jobs</p>
+    </div>
+  </div>
+</main>
+
+<script>
+/* DARK MODE */
+function toggleDarkMode() {
+  const isDark = document.documentElement.classList.toggle("dark");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+  document.getElementById("dark-icon").innerText = isDark ? "light_mode" : "dark_mode";
+}
+
+function loadTheme() {
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+    document.getElementById("dark-icon").innerText = "light_mode";
+  }
+}
+
+/* THE FIX: ONE SINGLE LOAD USER FUNCTION */
+async function loadUser() {
+  // 1. Get the identifying email from storage
+  const activeEmail = localStorage.getItem("currentUserEmail") || localStorage.getItem("currentUser");
+  
+  if (!activeEmail) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  // 2. Try to get data from Backend first (Most Accurate)
+  try {
+    const response = await fetch(`http://localhost:8080/api/users/${activeEmail}`);
+    if (response.ok) {
+      const account = await response.json();
+      displayData(account);
+      return; // Stop here if backend works
+    }
+  } catch (error) {
+    console.warn("Backend unreachable, trying local storage...");
+  }
+
+  // 3. Fallback: Try to get data from Local Storage (Browser Memory)
+  const localData = localStorage.getItem(activeEmail) || localStorage.getItem("userData");
+  if (localData) {
+    displayData(JSON.parse(localData));
+  }
+}
+
+/* HELPER TO SHOW DATA ON SCREEN */
+function displayData(user) {
+  document.getElementById("welcome-user").innerText = user.name || "User";
+  document.getElementById("side-dept").innerText = user.department || "General";
+  document.getElementById("problems-solved").innerText = user.solvedCount ?? 0;
+  document.getElementById("user-score").innerText = user.score ?? 0;
+}
+
+/* NAVIGATION */
+function handleFeatureClick(feature) {
+  const paths = {
+    'skills': 'skill-learning.html',
+    'aptitude': 'aptitude.html',
+    'jobs': 'jobs.html'
+  };
+  if (paths[feature]) window.location.href = paths[feature];
+}
+
+/* LOGOUT */
+function logout() {
+  localStorage.removeItem("currentUserEmail");
+  localStorage.removeItem("currentUser");
+  localStorage.removeItem("userData");
+  window.location.href = "login.html";
+}
+
+/* INIT */
+window.addEventListener("DOMContentLoaded", () => {
+  loadTheme();
+  loadUser();
+});
+</script>
+</body>
+</html>

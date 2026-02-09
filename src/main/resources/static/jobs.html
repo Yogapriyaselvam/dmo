@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Matches - EduPath AI</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+</head>
+
+<body class="bg-gray-50 dark:bg-[#101d22] font-sans min-h-screen">
+
+  <!-- HEADER -->
+  <header class="flex justify-between items-center p-5 bg-white dark:bg-[#15262c] shadow">
+    <h1 class="text-xl font-bold">Job Matches</h1>
+
+    <button onclick="goDashboard()" class="bg-blue-500 text-white px-4 py-2 rounded-lg">
+      Back to Dashboard
+    </button>
+  </header>
+
+  <!-- SEARCH -->
+  <div class="max-w-4xl mx-auto p-6">
+    <input
+      id="jobSearch"
+      placeholder="Search job role (e.g., Java Developer, Data Analyst)"
+      class="w-full p-3 border rounded-lg mb-6"
+      oninput="searchJobs()"
+    />
+
+    <!-- JOB LIST -->
+    <div id="jobList" class="space-y-4"></div>
+
+    <!-- STUDY SUGGESTIONS -->
+    <div id="studyBox" class="mt-8 hidden">
+      <h2 class="text-2xl font-bold mb-3">What to Study for this Job</h2>
+      <ul id="studyList" class="list-disc pl-6 space-y-1 text-gray-700 dark:text-gray-300"></ul>
+    </div>
+  </div>
+
+  <script>
+    const jobs = [
+      {
+        title: "Java Developer",
+        company: "Infosys",
+        skills: [
+          "Core Java",
+          "Spring Boot",
+          "MySQL",
+          "REST API",
+          "Data Structures",
+          "OOP Concepts"
+        ]
+      },
+      {
+        title: "Frontend Developer",
+        company: "TCS",
+        skills: [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "React",
+          "Responsive Design",
+          "Git"
+        ]
+      },
+      {
+        title: "Data Analyst",
+        company: "Wipro",
+        skills: [
+          "Python",
+          "Pandas",
+          "SQL",
+          "Excel",
+          "Power BI",
+          "Statistics"
+        ]
+      },
+      {
+        title: "Software Tester",
+        company: "HCL",
+        skills: [
+          "Manual Testing",
+          "Selenium",
+          "Test Cases",
+          "Bug Tracking",
+          "Automation Basics"
+        ]
+      },
+      {
+        title: "AI Engineer",
+        company: "Google",
+        skills: [
+          "Python",
+          "Machine Learning",
+          "Deep Learning",
+          "TensorFlow",
+          "Data Science",
+          "Math & Statistics"
+        ]
+      }
+    ];
+
+    function renderJobs(list) {
+      const container = document.getElementById("jobList");
+
+      container.innerHTML = list
+        .map(
+          (job) => `
+        <div class="bg-white dark:bg-[#15262c] p-5 rounded-xl shadow flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-lg">${job.title}</h3>
+            <p class="text-sm text-gray-500">${job.company}</p>
+          </div>
+
+          <button
+            onclick="showStudy('${job.title}')"
+            class="bg-green-500 text-white px-4 py-2 rounded-lg"
+          >
+            View Study Plan
+          </button>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    function searchJobs() {
+      const text = document.getElementById("jobSearch").value.toLowerCase();
+
+      const filtered = jobs.filter((j) =>
+        j.title.toLowerCase().includes(text)
+      );
+
+      renderJobs(filtered);
+    }
+
+    function showStudy(title) {
+      const job = jobs.find((j) => j.title === title);
+
+      const box = document.getElementById("studyBox");
+      const list = document.getElementById("studyList");
+
+      list.innerHTML = job.skills.map((s) => `<li>${s}</li>`).join("");
+
+      box.classList.remove("hidden");
+
+      // give score reward
+      let score = parseInt(localStorage.getItem("userScore")) || 720;
+      score += 5;
+      localStorage.setItem("userScore", score);
+    }
+
+    function goDashboard() {
+      window.location.href = "dashboard.html";
+    }
+
+    renderJobs(jobs);
+  </script>
+</body>
+</html>

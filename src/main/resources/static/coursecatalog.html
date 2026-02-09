@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduPath Course Catalog</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13b6ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101d22",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-6 py-3 lg:px-10">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white">EduPath</h1>
+</div>
+<nav class="hidden md:flex flex-1 justify-center gap-8">
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-semibold border-b-2 border-primary pb-1" href="#">Catalog</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">My Learning</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Community</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-cover bg-center border-2 border-primary/20" data-alt="User profile picture of a young male student" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQsJ9ebf3sDRPoRVAAtV5r1AsjB41nDLqIiRhKuPW5ffZNqkSsl848S4ZP0GRbOnqEPGUviwIJTFHHG9AUHAzxn2X0dLpyW2U-q716-YxNqxNngCVDa69DQ5psByEP-CEIGj6QkatxI7cuqUh5g0SNpJBYk0HW5ov8w70aB3V4-g5MqmTNqg73SjvRmK-mkUpqxAI4Hry84e0voLZiJAv5ZP5zP0fMjD54mTrEoINa9bfF7xYtfOSy2zTaqFIj4OMpbBgb3MsUksxr')">
+</div>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- Left Sidebar (Sticky) -->
+<aside class="hidden lg:flex w-80 flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark p-6 gap-6 h-[calc(100vh-64px)] sticky top-[64px] overflow-y-auto">
+<div>
+<h2 class="text-lg font-bold text-slate-900 dark:text-white mb-1">My Active Courses</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400">Jump back into your modules</p>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Sidebar Course Card 1 -->
+<div class="group flex items-center gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-transparent hover:border-primary/30 transition-all cursor-pointer">
+<div class="h-14 w-14 shrink-0 rounded-lg bg-cover bg-center" data-alt="Science laboratory equipment close up" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1E0e5YpTlnWPAlhsrR5xdOudR2V-FW40Qd3HhpDgCGlLPxu3kzLMLY0X7wJg55Itb9bLugxlBk_cTmmJKWb2hSSOil97LX0HqKC-oTVa4yiz6RbbV3c0JG5JNa-pFxMkCqWw1evC_HfQJ2fqjp4TmxY2bhCVDbikz5JuPqRcyBX0wX78CSfJE6i4IAwGuRFDZY3upk_ZwhPzG4nn6MWuseu2JnWzoc8jP0kpWeZ5xeQ66h_-QKK2Rqfd3S56EPQ3woYthVHAPP6Qs')"></div>
+<div class="flex flex-col flex-1 overflow-hidden">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Intro to Chemistry</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="h-1.5 flex-1 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<div class="h-full bg-primary" style="width: 45%;"></div>
+</div>
+<span class="text-[10px] font-bold text-primary">45%</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">play_circle</span>
+</div>
+<!-- Sidebar Course Card 2 -->
+<div class="group flex items-center gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-transparent hover:border-primary/30 transition-all cursor-pointer">
+<div class="h-14 w-14 shrink-0 rounded-lg bg-cover bg-center" data-alt="MacBook displaying lines of code" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7fIdRrD9HgkjYaw22HdMJScwhJC8TrmQOsgrB9wb5gnMOgYFU7GgHrvvaljMnD-BJm_EAbR3ZsWwhqx_pxeJRmz4UFObmbBwEZhJF8eIUvq37rBq39MG2x-AJtq2eWaskDSAeHHFdlmdw-fT6qg-KJRntpEl8rHQkgShdCmKXqb43IYaBWrG8Nz944KNf_9JN1cDo5WuhcpTeuk7IYPPVzybHLIoPDwq6TpgdkT7mviYteltBNfB_hKG489QS76AhL2XUomkS1IAO')"></div>
+<div class="flex flex-col flex-1 overflow-hidden">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Python Basics</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="h-1.5 flex-1 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<div class="h-full bg-primary" style="width: 82%;"></div>
+</div>
+<span class="text-[10px] font-bold text-primary">82%</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">play_circle</span>
+</div>
+<!-- Sidebar Course Card 3 -->
+<div class="group flex items-center gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-transparent hover:border-primary/30 transition-all cursor-pointer">
+<div class="h-14 w-14 shrink-0 rounded-lg bg-cover bg-center" data-alt="Modern business building with glass exterior" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDkV6MYTyf1xMafyaoe3K-aW3YYdwqr9YWGZWLhhJ7IKNWKRpbaKyYeoSE6ka-Bi9Y8A_dYnYik9Kd4qdFn2SYTPfn1XQbi3yufH8tgrA2sFiPeEdj2yDZB2Y53JvrBnHwY6kPMpfHfe33aRXv3YQHPVsiI_cKl1ibs3zqxROB63aqn59B5DCM8-RG1NjVNONBFUwqaJddfTTnxHGLc9tYgLiEJLPxsBOfwe57fIPUoH6biKArr4dV2npjV-4IIAt-mFSVDBn_TxawT')"></div>
+<div class="flex flex-col flex-1 overflow-hidden">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Microeconomics</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="h-1.5 flex-1 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<div class="h-full bg-primary" style="width: 15%;"></div>
+</div>
+<span class="text-[10px] font-bold text-primary">15%</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">play_circle</span>
+</div>
+</div>
+<button class="mt-4 flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    View All My Courses
+                </button>
+<div class="mt-auto border-t border-slate-200 dark:border-slate-800 pt-6">
+<div class="p-4 rounded-xl bg-primary/10 border border-primary/20">
+<h4 class="text-sm font-bold text-slate-900 dark:text-white">EduPath Premium</h4>
+<p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">Get unlimited access to certifications and labs.</p>
+<button class="mt-3 w-full py-2 bg-primary text-white text-xs font-bold rounded-lg hover:brightness-110 transition-all">Upgrade Now</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 bg-background-light dark:bg-background-dark p-6 lg:p-10">
+<!-- Search and Filters Section -->
+<div class="max-w-6xl mx-auto space-y-6">
+<div class="flex flex-col gap-2">
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Browse Catalog</h2>
+<p class="text-slate-500 dark:text-slate-400">Discover your next academic milestone from 500+ specialized courses.</p>
+</div>
+<div class="flex flex-col md:flex-row gap-4">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-12 pr-4 py-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-slate-800 dark:text-white transition-all shadow-sm" placeholder="Search for courses, skills, or professors" type="text"/>
+</div>
+<button class="flex items-center justify-center gap-2 px-6 py-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all shadow-sm">
+<span class="material-symbols-outlined">filter_list</span>
+                            Filters
+                        </button>
+</div>
+<!-- Category Pills -->
+<div class="flex flex-wrap gap-2 pb-2">
+<button class="px-5 py-2 rounded-full bg-primary text-white font-semibold text-sm shadow-md shadow-primary/20 transition-all">All Courses</button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-medium text-sm hover:border-primary hover:text-primary transition-all shadow-sm">Engineering</button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-medium text-sm hover:border-primary hover:text-primary transition-all shadow-sm">Science</button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-medium text-sm hover:border-primary hover:text-primary transition-all shadow-sm">Business</button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-medium text-sm hover:border-primary hover:text-primary transition-all shadow-sm">Arts</button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-medium text-sm hover:border-primary hover:text-primary transition-all shadow-sm">Humanities</button>
+</div>
+<!-- Course Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pt-4">
+<!-- Course Card 1 -->
+<div class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Digital analytics dashboard showing data charts" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBx3dXeN8tf3EeRWrRvVL-dDpw-eY73A3V7juOe6h1bgfqgOmVQU_AfK8hwVEg1TE2PbDrt92myY4eb2JjIyjPcts-h1ubuj3fI2sIIYDsBMutjHf7anGJPyPXycBZcDT1zrF9RDucXb-_G6u7hdTkMQl8dFGc-RDoqRmu2mfaVPHns_URss6c3hS9Ou9599tW3OpbZ_AiIEqVxq_9L3pJkhwyVPJ5JLqDXiCx5hEubbuRR60_avg2tHKLsA9tej4lzn6ZvmNw38Ap6')"></div>
+<div class="absolute top-3 left-3 px-3 py-1 bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-lg">Intermediate</div>
+<button class="absolute top-3 right-3 p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug">Python for Data Science</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">Master the core libraries for statistical analysis and data visualization in Python.</p>
+<div class="flex flex-wrap gap-2 mb-6 mt-auto">
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">NumPy</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Pandas</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Matplotlib</span>
+</div>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                        12 Weeks
+                                    </div>
+<button class="px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all">Learn More</button>
+</div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="UI design elements on a workspace" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAybrlvW4z7Sr69x56yMR871l7gLJfhHMuHZKOBXMXifRc9o_z825c6shSDHCm35t3nXcxlkik75j6HU6lOfPuGgCpdtlpK0URdJ0neXlqVpdWkX1N14lieByFyXwgBSHu8MzfKkaatE-hXnkw9tsfv7BmYuydQLwXIU2kMHOYA-LhehfCqFZRJ-76l1HzmqNzmgNsbsB2sZt1Bp-XTz6MUlouIHlt1rWczoK9nKgZCoP1Nxzyw5NyhKEJ2iNDKRGLeF-0IZ6UvKyMw')"></div>
+<div class="absolute top-3 left-3 px-3 py-1 bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-lg">Beginner</div>
+<button class="absolute top-3 right-3 p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug">Introduction to UX Design</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">Learn user-centered design principles and the tools used by industry professionals.</p>
+<div class="flex flex-wrap gap-2 mb-6 mt-auto">
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Figma</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Research</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">UX</span>
+</div>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                        8 Weeks
+                                    </div>
+<button class="px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all">Learn More</button>
+</div>
+</div>
+</div>
+<!-- Course Card 3 -->
+<div class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Business financial report and graphs" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBtqJGKIMPwrg2dKQNHeeqGde3aLwMvcKL2bJ2kGRBQ5HQEzcuwTUgrPsMcwnM8tQ74TneIdsJizJ1MfvX0hTFhhlX_UxyTGN61cAS1bKIuAMuMMtlHAMIYIDW2x2im5IlQ6ABVE5xvLiPIMwidQz7S44DK2erh-yomKAHVWkwRSXMrwzCq-dKoCmLTElVZiIXEJRR-fqG8l55LkMtxkyCzWNpPx5_PvJPexe6JjPSVyEAMfuZwMBByZvPGKlL0Dpumjb8YmdXywsCV')"></div>
+<div class="absolute top-3 left-3 px-3 py-1 bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-lg">Advanced</div>
+<button class="absolute top-3 right-3 p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug">Financial Analysis 101</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">Deep dive into corporate finance, equity analysis, and market trends.</p>
+<div class="flex flex-wrap gap-2 mb-6 mt-auto">
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Accounting</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Excel</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Stats</span>
+</div>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                        15 Weeks
+                                    </div>
+<button class="px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all">Learn More</button>
+</div>
+</div>
+</div>
+<!-- Course Card 4 -->
+<div class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Physics formulas written on a blackboard" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDXMGmHjcU8EbV0FmikFMQz2JaJ3lMjxBrIkLb7kz49Qq5BR5EFKpok2XFlKbW-hSCSfbpmsNkcGW5ATNja-nP2QnFJLp17SuQDMZlzaBQxMOHHrK6dbv48hQToSLhvDiz6YSSaYL8lx36QqffTwXnjEnKBdyoSKpLUk47sTXEQX9tQZe9pcwwm2Xe6yOIMn5oXeQSenXD9JtNy7psKdg-fj7FlMIUlhYbiHykLgX43ef5sLnZ5iCjhRv4F-j3PwWbepgSgc6rkjwZa')"></div>
+<div class="absolute top-3 left-3 px-3 py-1 bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-lg">Advanced</div>
+<button class="absolute top-3 right-3 p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug">Quantum Mechanics Foundations</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">An exploration of the fundamental laws of physics at the atomic and subatomic levels.</p>
+<div class="flex flex-wrap gap-2 mb-6 mt-auto">
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Calculus</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Physics</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Theory</span>
+</div>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                        20 Weeks
+                                    </div>
+<button class="px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all">Learn More</button>
+</div>
+</div>
+</div>
+<!-- Course Card 5 -->
+<div class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Digital art brushes and drawing tablet" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUpjkEb4WgRRzZMVef9Y7cr712jF8gSimswOryzaLbOIEs7Iy1Z8e6LEDdvKn336IN0ZHRmm9-_cKkFiRYFjzODenamstVRLWLSfcXXkwBSDN9kmsIPym9GE49TLQjcI0EF6x5ekmsPVi0h9jHNuKyC2zE0ag27nv1sztc_RVKoLYumtNoM2mCzursQ2Yrv-jESwADkNw-48sZH36f7BWIL9OcxRxOYoeeyrZkrBuHJoVNOvSX4ZrsROljguM8rjTRV18c6NGWPlIY')"></div>
+<div class="absolute top-3 left-3 px-3 py-1 bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-lg">Beginner</div>
+<button class="absolute top-3 right-3 p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug">Digital Art Mastery</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">Master modern digital illustration techniques using industry-standard hardware and software.</p>
+<div class="flex flex-wrap gap-2 mb-6 mt-auto">
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Illustration</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Procreate</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Design</span>
+</div>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                        6 Weeks
+                                    </div>
+<button class="px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all">Learn More</button>
+</div>
+</div>
+</div>
+<!-- Course Card 6 -->
+<div class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all flex flex-col">
+<div class="relative h-48 w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Aerial view of server room cables" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzzJu_JflWJUvXC63tgE3nnTtEz5ZoyESoKQNql-J8EfPmYuIRrOapQImPDqM6xSswXiGwxAy1QR2JmzxOz6o8Od3JNvZ-SADV0yiaee3J_FgCL6sIaPYWzciSNdmsJJ3bNmNrMM-9qnXh9lnDl02Aaql9z91wWlIjZmoNXUll2s-vOPUipkU4_E35Grbr06XeZcWh_NrJ4DJZLn82UkhY61XtzAM-6nITGESqhx_4Nk9SUvpaXXD9HryZXJU6LlhWZZbRZdLKsjmv')"></div>
+<div class="absolute top-3 left-3 px-3 py-1 bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-lg">Intermediate</div>
+<button class="absolute top-3 right-3 p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug">Networking &amp; Security</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">Understand the architecture of the modern internet and how to protect infrastructure.</p>
+<div class="flex flex-wrap gap-2 mb-6 mt-auto">
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">TCP/IP</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Cyber</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-semibold rounded uppercase">Linux</span>
+</div>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                        14 Weeks
+                                    </div>
+<button class="px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all">Learn More</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination Footer -->
+<div class="flex items-center justify-center gap-4 py-10">
+<button class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 cursor-not-allowed">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-lg bg-primary text-white font-bold">1</button>
+<button class="w-10 h-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-semibold hover:border-primary transition-colors">2</button>
+<button class="w-10 h-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-semibold hover:border-primary transition-colors">3</button>
+<span class="flex items-center text-slate-400">...</span>
+<button class="w-10 h-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-semibold hover:border-primary transition-colors">12</button>
+</div>
+<button class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

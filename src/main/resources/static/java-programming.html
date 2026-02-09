@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Programming Course</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+h1 { color: #1e90ff; }
+
+.module {
+  margin-bottom: 10px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.module:hover { background: #e6f0ff; }
+
+.module-description { display: none; margin-top: 8px; }
+
+.learn-box {
+  display: none;
+  background: #f0f8ff;
+  padding: 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
+.quiz { display: none; background: #e8f5e9; padding: 15px; border-radius: 8px; }
+
+button {
+  margin-top: 8px;
+  margin-right: 6px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.learn-btn { background: #17a2b8; color: white; }
+.quiz-btn { background: #28a745; color: white; }
+.check-btn { background: #ff9800; color: white; }
+
+#score { margin-top: 12px; font-weight: bold; font-size: 18px; }
+</style>
+</head>
+<body>
+
+<h1>Java Programming Course</h1>
+
+<div id="modules-container"></div>
+
+<div class="quiz" id="quiz-container">
+  <h2 id="quiz-title"></h2>
+  <form id="quiz-form"></form>
+  <button class="check-btn" onclick="checkQuiz()">Submit Quiz</button>
+  <div id="score"></div>
+  <button class="quiz-btn" onclick="backToModules()">Back</button>
+</div>
+
+<script>
+/* ---------- Java Module Learn Content ---------- */
+const learnContent = {
+  1: `Definition of Java\n\nJava is a platform-independent, object-oriented programming language. It runs on multiple OS via JVM.\n\nExample:\npublic class Hello {\n    public static void main(String[] args) {\n        System.out.println("Hello Java!");\n    }\n}`,
+  2: `Variables and Data Types\n\nVariables store data. Java has primitive types: int, float, char, boolean, and reference types like String.\n\nExample:\nint age = 20;\nfloat price = 99.5f;\nchar grade = 'A';\nboolean isActive = true;\nString name = "Alice";`,
+  3: `Operators & Control Statements\n\nOperators: +, -, ==, !=, &&, ||. Control: if, for, while, switch.\n\nExample:\nint x = 5;\nif (x > 0) {\n    System.out.println("Positive number");\n}\nfor (int i = 1; i <= 3; i++) {\n    System.out.println("Count: " + i);\n}`,
+  4: `Classes and Objects\n\nClass is a blueprint; Object is an instance.\n\nExample:\nclass Car {\n    String brand;\n    void drive() { System.out.println("Driving..."); }\n}\nCar myCar = new Car();\nmyCar.brand = "Toyota";\nmyCar.drive();`,
+  5: `Inheritance & Polymorphism\n\nInheritance allows class reuse. Polymorphism: same method behaves differently.\n\nExample:\nclass Animal { void sound() { System.out.println("Some sound"); } }\nclass Dog extends Animal { void sound() { System.out.println("Bark"); } }\nAnimal a = new Dog();\na.sound(); // Prints "Bark"`,
+  6: `Exception Handling\n\nJava uses try, catch, finally to handle errors.\n\nExample:\ntry {\n    int result = 10 / 0;\n} catch (ArithmeticException e) {\n    System.out.println("Error: " + e.getMessage());\n} finally {\n    System.out.println("Cleanup done.");\n}`,
+  7: `Arrays and Strings\n\nArrays store multiple values. Strings have built-in methods.\n\nExample:\nint[] numbers = {1, 2, 3};\nSystem.out.println(numbers[0]);\nString text = "Java";\nSystem.out.println(text.toUpperCase());`,
+  8: `File Handling\n\nJava reads/writes files via FileReader, BufferedReader, FileWriter.\n\nExample:\nimport java.io.*;\nFileWriter fw = new FileWriter("data.txt");\nfw.write("Hello File");\nfw.close();`,
+  9: `Collections Framework\n\nCollections: List, Set, Map.\n\nExample:\nimport java.util.*;\nList<String> names = new ArrayList<>();\nnames.add("Alice");\nnames.add("Bob");\nfor (String n : names) {\n    System.out.println(n);\n}`,
+  10: `Multithreading\n\nRun multiple tasks simultaneously for better performance.\n\nExample:\nclass MyThread extends Thread {\n    public void run() {\n        System.out.println("Thread running...");\n    }\n}\nMyThread t1 = new MyThread();\nt1.start();`
+};
+
+/* ---------- Quiz Generator ---------- */
+function generateQuestions(topic){
+  return Array.from({length:5}, (_,i)=>({
+    q:`${topic} Question ${i+1}?`,
+    options:["Correct","Wrong","None","Error"],
+    answer:0 // correct option index
+  }));
+}
+
+/* ---------- Modules Data ---------- */
+const modules = {};
+for(let i=1;i<=10;i++){
+  modules[i] = {
+    name: Object.values(learnContent)[i-1].split("\n")[0], // first line as module name
+    quiz: generateQuestions("Module "+i)
+  };
+}
+
+let currentModule = 0;
+
+/* ---------- Create Modules UI ---------- */
+const container = document.getElementById("modules-container");
+
+for(let i=1;i<=10;i++){
+  const div = document.createElement("div");
+  div.className="module";
+  div.innerHTML = `
+    <strong>Module ${i}: ${modules[i].name}</strong>
+    <div class="module-description" id="desc${i}">
+      <button class="learn-btn" onclick="showLearn(${i}, event)">Learn</button>
+      <button class="quiz-btn" onclick="showQuiz(${i}, event)">Show Quiz</button>
+      <div class="learn-box" id="learn${i}">${learnContent[i]}</div>
+    </div>
+  `;
+  div.onclick = ()=>showModule(i);
+  container.appendChild(div);
+}
+
+/* ---------- Toggle Description ---------- */
+function showModule(id){
+  for(let i=1;i<=10;i++){
+    document.getElementById("desc"+i).style.display="none";
+    document.getElementById("learn"+i).style.display="none";
+  }
+  document.getElementById("desc"+id).style.display="block";
+}
+
+/* ---------- Show/Hide Learn ---------- */
+function showLearn(id,event){
+  event.stopPropagation();
+  const box=document.getElementById("learn"+id);
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+/* ---------- Show Quiz ---------- */
+function showQuiz(id,event){
+  event.stopPropagation();
+  currentModule=id;
+
+  document.getElementById("modules-container").style.display="none";
+  document.getElementById("quiz-container").style.display="block";
+
+  document.getElementById("quiz-title").innerText = `Module ${id} Quiz`;
+
+  const form=document.getElementById("quiz-form");
+  form.innerHTML="";
+
+  modules[id].quiz.forEach((q,i)=>{
+    let html=`<p><b>${i+1}. ${q.q}</b></p>`;
+    q.options.forEach((opt,j)=>{
+      html+=`<label><input type="radio" name="q${i}" value="${j}"> ${opt}</label><br>`;
+    });
+    form.innerHTML+=html;
+  });
+
+  document.getElementById("score").innerText="";
+}
+
+/* ---------- Check Score ---------- */
+function checkQuiz(){
+  const quiz = modules[currentModule].quiz;
+  let score = 0;
+
+  quiz.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name="q${i}"]:checked`);
+    if(sel && Number(sel.value)===q.answer) score++;
+  });
+
+  document.getElementById("score").innerText = `Your Score: ${score} / ${quiz.length}`;
+}
+
+/* ---------- Back ---------- */
+function backToModules(){
+  document.getElementById("quiz-container").style.display="none";
+  document.getElementById("modules-container").style.display="block";
+}
+</script>
+
+</body>
+</html>

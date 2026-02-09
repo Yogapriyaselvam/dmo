@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spring Boot Course</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10 font-sans text-gray-800">
+
+  <h1 class="text-3xl font-bold mb-8 text-blue-600 text-center">Spring Boot Course</h1>
+
+  <ol class="list-decimal ml-6 space-y-6 max-w-3xl mx-auto">
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 1: Introduction to Spring Boot</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+What is Spring Boot and why use it?
+Setting up environment
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 2: Project Structure</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+src/main/java vs src/main/resources
+application.properties
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 3: Controllers & REST APIs</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+@RestController
+@GetMapping("/hello")
+public String hello() { return "Hello Spring Boot"; }
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 4: Dependency Injection</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+@Autowired
+private MyService service;
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 5: Spring Data JPA</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+@Entity
+public class User { ... }
+@Repository
+public interface UserRepo extends JpaRepository<User, Long> { }
+      </pre>
+    </li>
+
+    <!-- Modules 6–18 styled the same way -->
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 6: Services & Business Logic</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Encapsulate business rules in services
+Example: @Service public class UserService { ... }
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 7: Exception Handling</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Manage errors gracefully
+Example: @ControllerAdvice with @ExceptionHandler
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 8: Spring Security Basics</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Secure applications with authentication/authorization
+Example: Configuring HttpSecurity in SecurityConfig
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 9: Thymeleaf Templates</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Server-side rendering with Thymeleaf
+Example: <p th:text="${user.name}"></p>
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 10: REST Client & Postman Testing</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Test APIs with Postman
+Example: Sending GET/POST requests to endpoints
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 11: Application Properties & Profiles</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Externalize configuration
+Example: application-dev.properties vs application-prod.properties
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 12: Logging & Debugging</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Monitor application behavior
+Example: Using SLF4J Logger in services
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 13: Packaging & Deployment</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Build JAR/WAR files
+Example: mvn clean package
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 14: Spring Boot Actuator</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Monitor and manage apps
+Example: /actuator/health endpoint
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 15: Spring Boot CLI</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Command-line tool for Spring Boot
+Example: spring run app.groovy
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 16: Unit Testing & JUnit</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Test individual components
+Example: @Test public void testService() { ... }
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 17: Integration Testing</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Test multiple layers together
+Example: @SpringBootTest annotation
+      </pre>
+    </li>
+
+    <li class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+      <h2 class="text-xl font-bold text-blue-600 mb-2">Module 18: Project: Todo App with Spring Boot</h2>
+      <pre class="bg-blue-50 p-4 rounded shadow text-sm text-blue-700">
+Definition: Final project applying all concepts
+Example: CRUD Todo app with REST APIs and JPA
+      </pre>
+    </li>
+
+  </ol>
+
+</body>
+</html>

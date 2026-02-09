@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Java Quiz</title>
+</head>
+
+<body style="font-family: Arial; padding: 40px;">
+
+<h1>Java Quiz</h1>
+
+<p>1) Java is a ____ language?</p>
+<button onclick="correct()">Object Oriented</button>
+<button onclick="wrong()">Machine</button>
+
+<p>2) Which keyword is used to create class?</p>
+<button onclick="correct()">class</button>
+<button onclick="wrong()">define</button>
+
+<br><br>
+
+<button onclick="finishQuiz()" style="background: green; color: white; padding: 10px 20px; border: none;">
+    Finish Quiz
+</button>
+
+<script>
+let score = 0;
+
+function correct() {
+    score++;
+    alert("Correct Answer!");
+}
+
+function wrong() {
+    alert("Wrong Answer!");
+}
+
+function finishQuiz() {
+    let oldScore = parseInt(localStorage.getItem("userScore")) || 0;
+    let newScore = oldScore + score * 5;
+
+    localStorage.setItem("userScore", newScore);
+
+    alert("Quiz Finished! Your score added: " + (score * 5));
+    window.location.href = "skill-learning.html";
+}
+</script>
+
+</body>
+</html>
