@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html class="light" lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/csHey, Cortana. Hey. s2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 
     <script>
@@ -188,29 +188,27 @@ async function handleRegister() {
     localStorage.setItem(email, JSON.stringify(studentData));
 
     // --- STEP 2: SAVE TO DATABASE (BACKEND) ---
-    try {
-        const response = await fetch("http://localhost:8080/api/users/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(studentData)
-        });
+try {
+    // CHANGE 8080 TO 5501
+    const response = await fetch("http://localhost:5501/api/users/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(studentData)
+    });
 
-        if (response.ok) {
-            status.innerText = "Account created in DB! Redirecting...";
-            status.className = "text-green-500 text-center text-sm font-bold mt-2";
-        } else {
-            status.innerText = "Saved to browser. Redirecting...";
-            status.className = "text-blue-500 text-center text-sm font-bold mt-2";
-        }
-    } catch (error) {
-        // If Backend is NOT running, we still redirect because Step 1 worked!
-        status.innerText = "Offline Mode: Account saved locally.";
-        status.className = "text-orange-500 text-center text-sm font-bold mt-2";
+    if (response.ok) {
+        status.innerText = "Account created successfully!";
+        status.className = "text-green-500 text-center text-sm font-bold mt-2";
+    } else {
+        const errorMsg = await response.text();
+        status.innerText = "Error: " + errorMsg;
+        status.className = "text-red-500 text-center text-sm font-bold mt-2";
     }
-
-    setTimeout(() => {
-        window.location.href = "login.html";
-    }, 1500);
+} catch (error) {
+    status.innerText = "Offline Mode: Backend server not reached.";
+    status.className = "text-orange-500 text-center text-sm font-bold mt-2";
+    console.error("Connection Error:", error);
+}
 }
 </script>
 </body></html>

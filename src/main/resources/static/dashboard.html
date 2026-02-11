@@ -78,36 +78,35 @@ function loadTheme() {
   }
 }
 
-/* THE FIX: ONE SINGLE LOAD USER FUNCTION */
+/* THE FIX: CONNECTED TO PORT 5501 AND CHECKING CORRECT KEYS */
 async function loadUser() {
-  // 1. Get the identifying email from storage
-  const activeEmail = localStorage.getItem("currentUserEmail") || localStorage.getItem("currentUser");
+  const activeEmail = localStorage.getItem("currentUserEmail");
+  const localData = localStorage.getItem("userData");
   
-  if (!activeEmail) {
-    window.location.href = "login.html";
+  // If either is missing, the user is NOT logged in
+  if (!activeEmail || !localData) {
+    console.log("No valid session. Redirecting...");
+    window.location.replace("login.html");
     return;
   }
 
-  // 2. Try to get data from Backend first (Most Accurate)
+  // Show data from browser memory first (Fast)
+  const userObj = JSON.parse(localData);
+  displayData(userObj);
+
+  // Then refresh from Backend (Accurate)
   try {
-    const response = await fetch(`http://localhost:8080/api/users/${activeEmail}`);
+    const response = await fetch(`http://localhost:5501/api/users/${activeEmail}`);
     if (response.ok) {
-      const account = await response.json();
-      displayData(account);
-      return; // Stop here if backend works
+      const freshData = await response.json();
+      displayData(freshData);
+      localStorage.setItem("userData", JSON.stringify(freshData));
     }
   } catch (error) {
-    console.warn("Backend unreachable, trying local storage...");
-  }
-
-  // 3. Fallback: Try to get data from Local Storage (Browser Memory)
-  const localData = localStorage.getItem(activeEmail) || localStorage.getItem("userData");
-  if (localData) {
-    displayData(JSON.parse(localData));
+    console.warn("Server offline, using cached data.");
   }
 }
 
-/* HELPER TO SHOW DATA ON SCREEN */
 function displayData(user) {
   document.getElementById("welcome-user").innerText = user.name || "User";
   document.getElementById("side-dept").innerText = user.department || "General";
@@ -115,7 +114,11 @@ function displayData(user) {
   document.getElementById("user-score").innerText = user.score ?? 0;
 }
 
-/* NAVIGATION */
+function logout() {
+  localStorage.clear();
+  window.location.replace("login.html");
+}
+
 function handleFeatureClick(feature) {
   const paths = {
     'skills': 'skill-learning.html',
@@ -125,15 +128,6 @@ function handleFeatureClick(feature) {
   if (paths[feature]) window.location.href = paths[feature];
 }
 
-/* LOGOUT */
-function logout() {
-  localStorage.removeItem("currentUserEmail");
-  localStorage.removeItem("currentUser");
-  localStorage.removeItem("userData");
-  window.location.href = "login.html";
-}
-
-/* INIT */
 window.addEventListener("DOMContentLoaded", () => {
   loadTheme();
   loadUser();
